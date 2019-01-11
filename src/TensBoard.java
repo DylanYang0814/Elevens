@@ -58,8 +58,8 @@ public class TensBoard extends Board {
         if (selectedCards.size() == 2) {
             return containsPairSum11(selectedCards);
         }
-        if (selectedCards.size() == 3) {
-            return containsJQK(selectedCards);
+        if (selectedCards.size() == 4) {
+            return containsQuartets(selectedCards);
         }
         return false;
     }
@@ -76,20 +76,19 @@ public class TensBoard extends Board {
     @Override
     public boolean anotherPlayIsPossible() {
         /* *** TO BE IMPLEMENTED IN ACTIVITY 9 *** */
-        return containsPairSum11(cardIndexes()) || containsJQK(cardIndexes());
+        return containsPairSum11(cardIndexes()) || containsQuartets(cardIndexes());
     }
 
     /**
-     * Check for an 11-pair in the selected cards.
+     * Check for an 10-pair in the selected cards.
      *
      * @param selectedCards selects a subset of this board.  It is list
      *                      of indexes into this board that are searched
-     *                      to find an 11-pair.
+     *                      to find an 10-pair.
      * @return true if the board entries in selectedCards
-     * contain an 11-pair; false otherwise.
+     * contain an 10-pair; false otherwise.
      */
     private boolean containsPairSum11(List<Integer> selectedCards) {
-        /* *** TO BE IMPLEMENTED IN ACTIVITY 9 *** */
         for (int i = 0; i < selectedCards.size(); i++) {
             for (int j = 0; j < selectedCards.size(); j++) {
                 if (cardAt(selectedCards.get(i)).pointValue() + cardAt(selectedCards.get(j)).pointValue() == 10) {
@@ -100,15 +99,23 @@ public class TensBoard extends Board {
         return false;
     }
 
-    /**
-     * Check for a JQK in the selected cards.
-     *
-     * @param selectedCards selects a subset of this board.  It is list
-     *                      of indexes into this board that are searched
-     *                      to find a JQK group.
-     * @return true if the board entries in selectedCards
-     * include a jack, a queen, and a king; false otherwise.
-     */
-    private boolean containsJQK(List<Integer> selectedCards) {
-        /* *** TO BE IMPLEMENTED IN ACTIVITY 9 *** */
+
+    private boolean containsQuartets(List<Integer> selectedCards) {
+        int tens = 0;
+        int jacks = 0;
+        int queens = 0;
+        int kings = 0;
+
+        for (int i = 0; i < selectedCards.size(); i++) {
+            if (cardAt(i).rank().equals("10"))
+                tens++;
+            else if (cardAt(selectedCards.get(i)).rank().equals("jack"))
+                jacks++;
+            else if (cardAt(selectedCards.get(i)).rank().equals("queen"))
+                queens++;
+            else if (cardAt(selectedCards.get(i)).rank().equals("king"))
+                kings++;
+        }
+        return tens == 4 || jacks == 4 || queens == 4 || kings == 4;
+    }
 }
