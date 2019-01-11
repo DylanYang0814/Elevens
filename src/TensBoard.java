@@ -56,7 +56,7 @@ public class TensBoard extends Board {
     public boolean isLegal(List<Integer> selectedCards) {
         /* *** TO BE IMPLEMENTED IN ACTIVITY 9 *** */
         if (selectedCards.size() == 2) {
-            return containsPairSum11(selectedCards);
+            return containsPairSum10(selectedCards);
         }
         if (selectedCards.size() == 4) {
             return containsQuartets(selectedCards);
@@ -76,7 +76,7 @@ public class TensBoard extends Board {
     @Override
     public boolean anotherPlayIsPossible() {
         /* *** TO BE IMPLEMENTED IN ACTIVITY 9 *** */
-        return containsPairSum11(cardIndexes()) || containsQuartets(cardIndexes());
+        return containsPairSum10(cardIndexes()) || containsQuartets(cardIndexes());
     }
 
     /**
@@ -88,7 +88,7 @@ public class TensBoard extends Board {
      * @return true if the board entries in selectedCards
      * contain an 10-pair; false otherwise.
      */
-    private boolean containsPairSum11(List<Integer> selectedCards) {
+    private boolean containsPairSum10(List<Integer> selectedCards) {
         for (int i = 0; i < selectedCards.size(); i++) {
             for (int j = 0; j < selectedCards.size(); j++) {
                 if (cardAt(selectedCards.get(i)).pointValue() + cardAt(selectedCards.get(j)).pointValue() == 10) {

@@ -4,4 +4,9 @@ public class SimRunner {
     {
 
     }
+
+    public boolean runSimulations(int num)
+    {
+
+    }
 }
