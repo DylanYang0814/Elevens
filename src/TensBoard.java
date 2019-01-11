@@ -107,7 +107,7 @@ public class TensBoard extends Board {
         int kings = 0;
 
         for (int i = 0; i < selectedCards.size(); i++) {
-            if (cardAt(selectedCards.get(i)).pointValue() == 10)
+            if (cardAt(selectedCards.get(i)).rank().equals("10"))
                 tens++;
             else if (cardAt(selectedCards.get(i)).rank().equals("jack"))
                 jacks++;
